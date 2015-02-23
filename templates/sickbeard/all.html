@@ -15,7 +15,7 @@
   <div id="sickbeard-list">
     {%for i in sickbeard|sort %}
     {% set show = sickbeard[i]%}
-    <ul id="{{show.tvdbid}}" class="sbshow">
+    <ul id="{{show.indexerid}}" class="sbshow">
       <li>
         <img src="{{show.url}}" class="show-image" />
         <div class="show-name">{{ i }}</div>
