@@ -132,8 +132,8 @@ AVAILABLE_MODULES = [
     },
     {
         'name': 'sickbeard',
-        'label': 'Manager - Sickbeard',
-        'description': 'Manage Sickbeard from within Maraschino',
+        'label': 'Manager - SickRage',
+        'description': 'Manage SickRage from within Maraschino',
         'static': True,
         'poll': 0,
         'delay': 0,
@@ -141,32 +141,32 @@ AVAILABLE_MODULES = [
             {
                 'key': 'sickbeard_api',
                 'value': '',
-                'description': 'Sickbeard API Key',
+                'description': 'SickRage API Key',
             },
             {
                 'key': 'sickbeard_user',
                 'value': '',
-                'description': 'Sickbeard Username',
+                'description': 'SickRage Username',
             },
             {
                 'key': 'sickbeard_password',
                 'value': '',
-                'description': 'Sickbeard Password',
+                'description': 'SickRage Password',
             },
             {
                 'key': 'sickbeard_ip',
                 'value': '',
-                'description': 'Sickbeard Hostname',
+                'description': 'SickRage Hostname',
             },
             {
                 'key': 'sickbeard_port',
                 'value': '',
-                'description': 'Sickbeard Port',
+                'description': 'SickRage Port',
             },
             {
                 'key': 'sickbeard_webroot',
                 'value': '',
-                'description': 'Sickbeard Webroot',
+                'description': 'SickRage Webroot',
             },
             {
                 'key': 'sickbeard_https',
