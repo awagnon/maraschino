@@ -831,7 +831,7 @@ $(document).ready(function() {
   });
 
 
-  /*** SICKBEARD ***/
+  /*** SICKRAGE ***/
 
   // Loading wheel on menu click
   $(document).on('click', '#sickbeard .menu li', function() {
@@ -853,7 +853,7 @@ $(document).ready(function() {
       }
     })
     .error(function(){
-      popup_message('Could not reach SickBeard.');
+      popup_message('Could not reach SickRage.');
     });
   });
 
@@ -865,8 +865,8 @@ $(document).ready(function() {
 
   // Load show info from banner display
   $(document).on('click', '#sickbeard .coming_ep .options img.banner', function(){
-    var tvdb = $(this).attr('id');
-    $.get(WEBROOT + '/xhr/sickbeard/get_show_info/'+tvdb, function(data){
+    var indexerid = $(this).attr('id');
+    $.get(WEBROOT + '/xhr/sickbeard/get_show_info/'+indexerid, function(data){
       $('#sickbeard').replaceWith(data);
     });
   });
@@ -940,7 +940,7 @@ $(document).ready(function() {
 
   // Season info
   $(document).on('click', '#sb_content > #show ul.seasons li', function(){
-    $.get(WEBROOT + '/xhr/sickbeard/get_season/'+$(this).attr('tvdbid')+'/'+$(this).attr('season'), function(data){
+    $.get(WEBROOT + '/xhr/sickbeard/get_season/'+$(this).attr('indexerid')+'/'+$(this).attr('season'), function(data){
       $('#sickbeard').replaceWith(data);
       $('#sickbeard .episode-list .tablesorter').tablesorter({sortList: [[0,0]]});
     });
@@ -955,7 +955,7 @@ $(document).ready(function() {
 
   // Episode info back button functionality
   $(document).on('click', '#sickbeard .episode-info div.back', function(){
-    $.get(WEBROOT + '/xhr/sickbeard/get_season/'+$(this).attr('tvdbid')+'/'+$(this).attr('season'), function(data){
+    $.get(WEBROOT + '/xhr/sickbeard/get_season/'+$(this).attr('indexerid')+'/'+$(this).attr('season'), function(data){
       $('#sickbeard').replaceWith(data);
       $('#sickbeard .episode-list .tablesorter').tablesorter({sortList: [[0,0]]});
     });
@@ -963,7 +963,7 @@ $(document).ready(function() {
 
   // Back Button Episode List
   $(document).on('click', '#sickbeard .episode-list >.back', function(){
-    $.get(WEBROOT + '/xhr/sickbeard/get_show_info/'+$(this).attr('tvdbid'), function(data){
+    $.get(WEBROOT + '/xhr/sickbeard/get_show_info/'+$(this).attr('indexerid'), function(data){
       $('#sickbeard').replaceWith(data);
     });
   });
@@ -980,37 +980,37 @@ $(document).ready(function() {
 
   // Delete show function
   $(document).on('click', '#sickbeard #show .manage .delete' , function(){
-    var id = $('#sickbeard #show .manage').attr('tvdbid');
+    var id = $('#sickbeard #show .manage').attr('indexerid');
     $.get(WEBROOT + '/xhr/sickbeard/delete_show/'+id)
     .success(function(data){
       popup_message(data);
     })
     .error(function(){
-      popup_message('Could not reach Sickbeard.');
+      popup_message('Could not reach SickRage.');
     });
   });
 
   // Refresh show function
   $(document).on('click', '#sickbeard #show .manage .refresh' , function(){
-    var id = $('#sickbeard #show .manage').attr('tvdbid');
+    var id = $('#sickbeard #show .manage').attr('indexerid');
     $.get(WEBROOT + '/xhr/sickbeard/refresh_show/'+id)
     .success(function(data){
       popup_message(data);
     })
     .error(function(){
-      popup_message('Could not reach Sickbeard.');
+      popup_message('Could not reach SickRage.');
     });
   });
 
   // Update show function
   $(document).on('click', '#sickbeard #show .manage .update' , function(){
-    var id = $('#sickbeard #show .manage').attr('tvdbid');
+    var id = $('#sickbeard #show .manage').attr('indexerid');
     $.get(WEBROOT + '/xhr/sickbeard/update_show/'+id)
     .success(function(data){
       popup_message(data);
     })
     .error(function(){
-      popup_message('Could not reach Sickbeard.');
+      popup_message('Could not reach SickRage.');
     });
   });
 
@@ -1021,7 +1021,7 @@ $(document).ready(function() {
       popup_message(data);
     })
     .error(function(){
-      popup_message('Could not reach Sickbeard.');
+      popup_message('Could not reach SickRage.');
     });
   });
 
@@ -1032,7 +1032,7 @@ $(document).ready(function() {
       popup_message(data);
     })
     .error(function(){
-      popup_message('Could not reach Sickbeard.');
+      popup_message('Could not reach SickRage.');
     });
   });
 
@@ -1088,7 +1088,7 @@ $(document).ready(function() {
     var lang = $('#sb_search #lang').find(':selected').val();
     var initial = $('#sb_search #quality').find(':selected').val();
     var params = 'lang='+lang+'&status='+status+'&initial='+initial;
-    $.get(WEBROOT + '/xhr/sickbeard/add_show/'+$(this).attr('tvdbid')+'/?'+params)
+    $.get(WEBROOT + '/xhr/sickbeard/add_show/'+$(this).attr('indexerid')+'/?'+params)
     .success(function(data){
       popup_message(data);
     })
@@ -1113,7 +1113,7 @@ $(document).ready(function() {
       }
     })
     .error(function(){
-      popup_message('There was a problem with SickBeard.');
+      popup_message('There was a problem with SickRage.');
     });
   });
 
@@ -1130,11 +1130,11 @@ $(document).ready(function() {
       }
     })
     .error(function(){
-      popup_message('There was a problem with SickBeard.');
+      popup_message('There was a problem with SickRage.');
     });
   });
 
-  /******  END SICKBEARD Functions  *******/
+  /******  END SICKRAGE Functions  *******/
 
   /*********** EXTRA SETTINGS *************/
 
