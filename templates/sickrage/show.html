@@ -1,0 +1,29 @@
+{% extends "sickrage/base.html" %}
+
+{% block sickrage_content %}
+
+<div id="sr_content" class="noscroll">
+  <div id='sr_show'>
+    <p class="sr-back operation_only">&laquo;</p>
+    <div class="banner">
+      <h2 class="show-name">{{sickrage.show_name}}</h2>
+      <img src="{{sickrage.url}}" />
+      <p class="airtime">{{sickrage.airs}}</p>
+      <p class="quality">{{sickrage.quality}}</p>
+      <p class="genre">{{ sickrage.genre[0] }}</p>
+      <p class="options">Options</p>
+    </div>
+    <div class="manage" indexerid="{{sickrage.indexerid}}">
+      <div class="delete"><img src="{{ url_for('static', filename='images/no.png' )}}">Delete Show</div>
+      <div class="refresh"><img src="{{ url_for('static', filename='images/refresh.png' )}}">Refresh Show</div>
+      <div class="update"><img src="{{ url_for('static', filename='images/update.png' )}}">Update Show</div>
+    </div>
+    <ul class="seasons">
+      {% for season in sickrage.season_list|sort %}
+      <li season="{{season}}" indexerid="{{sickrage.indexerid}}">Season {{ season }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endblock %}
