@@ -13,7 +13,7 @@
 <div id="sb_content" class="noscroll">
   <div class="history">
     {% for item in sickbeard %}
-    <ul id="{{item.tvdbid}}{{item.season}}{{item.episode}}{{item.status}}" class="{{item.status}}">
+    <ul id="{{item.indexerid}}{{item.season}}{{item.episode}}{{item.status}}" class="{{item.status}}">
       <li>
         <span class="status" title="{{item.status}} on {{ item.date }}">{{item.status}}</span>
         <span class="name" title="Path: {{ item.resource_path }}">{{item.show_name}} S{{item.season}}E{{item.episode}}</span>
