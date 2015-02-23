@@ -61,6 +61,7 @@ def import_modules():
     import modules.script_launcher
     import modules.search
     import modules.sickbeard
+    import modules.sickrage
     import modules.trakt
     import modules.traktplus
     import modules.transmission
