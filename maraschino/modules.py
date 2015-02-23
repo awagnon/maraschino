@@ -250,7 +250,7 @@ AVAILABLE_MODULES = [
     		{
     			'key': 'sickrage_user',
     			'value': '',
-    			'description': "Sickrage Username',
+    			'description': 'Sickrage Username',
     		},
     		{
     			'key': 'sickrage_password',
