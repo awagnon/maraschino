@@ -3,7 +3,7 @@ import urllib2
 import base64
 import StringIO
 
-from maraschino import app
+from maraschino import app, logger, WEBROOT
 from maraschino.tools import *
 import maraschino
 
@@ -76,10 +76,12 @@ def xhr_sickbeard():
         show_airdate = get_setting_value('sickbeard_airdate') == '1'
 
         if sickbeard['result'].rfind('success') >= 0:
+            logger.log('SICKRAGE :: Successful API call to %s' % params, 'DEBUG')
             sickbeard = sickbeard['data']
             for time in sickbeard:
                 for episode in sickbeard[time]:
-                    episode['image'] = get_pic(episode['tvdbid'], 'banner')
+                    episode['image'] = get_pic(episode['indexerid'], 'banner')
+                    logger.log('SICKRAGE :: Successful API call to %s' % params, 'DEBUG')
     except:
         return render_template('sickbeard.html',
             sickbeard='',
@@ -98,10 +100,10 @@ def xhr_sickbeard():
     )
 
 
-@app.route('/xhr/sickbeard/search_ep/<tvdbid>/<season>/<episode>/')
+@app.route('/xhr/sickbeard/search_ep/<indexerid>/<season>/<episode>/')
 @requires_auth
-def search_ep(tvdbid, season, episode):
-    params = '/?cmd=episode.search&tvdbid=%s&season=%s&episode=%s' % (tvdbid, season, episode)
+def search_ep(indexerid, season, episode):
+    params = '/?cmd=episode.search&indexerid=%s&season=%s&episode=%s' % (indexerid, season, episode)
 
     try:
         sickbeard = sickbeard_api(params)
@@ -110,9 +112,9 @@ def search_ep(tvdbid, season, episode):
         return jsonify({'result': False})
 
 
-@app.route('/xhr/sickbeard/get_plot/<tvdbid>/<season>/<episode>/')
-def get_plot(tvdbid, season, episode):
-    params = '/?cmd=episode&tvdbid=%s&season=%s&episode=%s' % (tvdbid, season, episode)
+@app.route('/xhr/sickbeard/get_plot/<indexerid>/<season>/<episode>/')
+def get_plot(indexerid, season, episode):
+    params = '/?cmd=episode&indexerid=%s&season=%s&episode=%s' % (indexerid, season, episode)
 
     try:
         sickbeard = sickbeard_api(params)
@@ -134,16 +136,16 @@ def get_all():
         sickbeard = sickbeard['data']
 
         for show in sickbeard:
-            sickbeard[show]['url'] = get_pic(sickbeard[show]['tvdbid'], 'banner')
+            sickbeard[show]['url'] = get_pic(sickbeard[show]['indexerid'], 'banner')
 
     return render_template('sickbeard/all.html',
         sickbeard=sickbeard,
     )
 
 
-@app.route('/xhr/sickbeard/get_show_info/<tvdbid>/')
-def show_info(tvdbid):
-    params = '/?cmd=show&tvdbid=%s' % tvdbid
+@app.route('/xhr/sickbeard/get_show_info/<indexerid>/')
+def show_info(indexerid):
+    params = '/?cmd=show&indexerid=%s' % indexerid
 
     try:
         sickbeard = sickbeard_api(params)
@@ -152,17 +154,17 @@ def show_info(tvdbid):
 
     if sickbeard['result'].rfind('success') >= 0:
         sickbeard = sickbeard['data']
-        sickbeard['url'] = get_pic(tvdbid, 'banner')
-        sickbeard['tvdb'] = tvdbid
+        sickbeard['url'] = get_pic(indexerid, 'banner')
+        sickbeard['indexerid'] = indexerid
 
     return render_template('sickbeard/show.html',
         sickbeard=sickbeard,
     )
 
 
-@app.route('/xhr/sickbeard/get_season/<tvdbid>/<season>/')
-def get_season(tvdbid, season):
-    params = '/?cmd=show.seasons&tvdbid=%s&season=%s' % (tvdbid, season)
+@app.route('/xhr/sickbeard/get_season/<indexerid>/<season>/')
+def get_season(indexerid, season):
+    params = '/?cmd=show.seasons&indexerid=%s&season=%s' % (indexerid, season)
 
     try:
         sickbeard = sickbeard_api(params)
@@ -174,7 +176,7 @@ def get_season(tvdbid, season):
 
     return render_template('sickbeard/season.html',
         sickbeard=sickbeard,
-        id=tvdbid,
+        id=indexerid,
         season=season,
     )
 
@@ -191,7 +193,7 @@ def history(limit):
         sickbeard = sickbeard['data']
 
         for show in sickbeard:
-            show['image'] = get_pic(show['tvdbid'])
+            show['image'] = get_pic(show['indexerid'])
 
     return render_template('sickbeard/history.html',
         sickbeard=sickbeard,
@@ -199,13 +201,13 @@ def history(limit):
 
 
 # returns a link with the path to the required image from SB
-def get_pic(tvdb, style='banner'):
-    return '%s/xhr/sickbeard/get_%s/%s' % (maraschino.WEBROOT, style, tvdb)
+def get_pic(indexerid, style='banner'):
+    return '%s/xhr/sickbeard/get_%s/%s' % (maraschino.WEBROOT, style, indexerid)
 
 
-@app.route('/xhr/sickbeard/get_ep_info/<tvdbid>/<season>/<ep>/')
-def get_episode_info(tvdbid, season, ep):
-    params = '/?cmd=episode&tvdbid=%s&season=%s&episode=%s&full_path=1' % (tvdbid, season, ep)
+@app.route('/xhr/sickbeard/get_ep_info/<indexerid>/<season>/<ep>/')
+def get_episode_info(indexerid, season, ep):
+    params = '/?cmd=episode&indexerid=%s&season=%s&episode=%s&full_path=1' % (indexerid, season, ep)
 
     try:
         sickbeard = sickbeard_api(params)
@@ -217,15 +219,15 @@ def get_episode_info(tvdbid, season, ep):
 
     return render_template('sickbeard/episode.html',
         sickbeard=sickbeard,
-        id=tvdbid,
+        id=indexerid,
         season=season,
         ep=ep,
     )
 
 
-@app.route('/xhr/sickbeard/set_ep_status/<tvdbid>/<season>/<ep>/<st>/')
-def set_episode_status(tvdbid, season, ep, st):
-    params = '/?cmd=episode.setstatus&tvdbid=%s&season=%s&episode=%s&status=%s' % (tvdbid, season, ep, st)
+@app.route('/xhr/sickbeard/set_ep_status/<indexerid>/<season>/<ep>/<st>/')
+def set_episode_status(indexerid, season, ep, st):
+    params = '/?cmd=episode.setstatus&indexerid=%s&season=%s&episode=%s&status=%s' % (indexerid, season, ep, st)
 
     try:
         sickbeard = sickbeard_api(params)
@@ -274,7 +276,7 @@ def sb_search():
         pass
 
     try:
-        params = '&tvdbid=%s' % (urllib2.quote(request.args['tvdbid']))
+        params = '&indexerid=%s' % (urllib2.quote(request.args['indexerid']))
     except:
         pass
 
@@ -301,9 +303,9 @@ def sb_search():
     )
 
 
-@app.route('/xhr/sickbeard/add_show/<tvdbid>/')
-def add_show(tvdbid):
-    params = '/?cmd=show.addnew&tvdbid=%s' % tvdbid
+@app.route('/xhr/sickbeard/add_show/<indexerid>/')
+def add_show(indexerid):
+    params = '/?cmd=show.addnew&indexerid=%s' % indexerid
     try:
         status = urllib2.quote(request.args['status'])
         lang = urllib2.quote(request.args['lang'])
@@ -327,16 +329,16 @@ def add_show(tvdbid):
     return sickbeard['message']
 
 
-@app.route('/xhr/sickbeard/get_banner/<tvdbid>/')
-def get_banner(tvdbid):
-    params = '/?cmd=show.getbanner&tvdbid=%s' % tvdbid
+@app.route('/xhr/sickbeard/get_banner/<indexerid>/')
+def get_banner(indexerid):
+    params = '/?cmd=show.getbanner&indexerid=%s' % indexerid
     img = StringIO.StringIO(sickbeard_api(params, use_json=False))
     return send_file(img, mimetype='image/jpeg')
 
 
-@app.route('/xhr/sickbeard/get_poster/<tvdbid>/')
-def get_poster(tvdbid):
-    params = '/?cmd=show.getposter&tvdbid=%s' % tvdbid
+@app.route('/xhr/sickbeard/get_poster/<indexerid>/')
+def get_poster(indexerid):
+    params = '/?cmd=show.getposter&indexerid=%s' % indexerid
     img = StringIO.StringIO(sickbeard_api(params, use_json=False))
     return send_file(img, mimetype='image/jpeg')
 
@@ -360,9 +362,9 @@ def log(level):
     )
 
 
-@app.route('/xhr/sickbeard/delete_show/<tvdbid>/')
-def delete_show(tvdbid):
-    params = '/?cmd=show.delete&tvdbid=%s' % tvdbid
+@app.route('/xhr/sickbeard/delete_show/<indexerid>/')
+def delete_show(indexerid):
+    params = '/?cmd=show.delete&indexerid=%s' % indexerid
     try:
         sickbeard = sickbeard_api(params)
     except:
@@ -371,9 +373,9 @@ def delete_show(tvdbid):
     return sickbeard['message']
 
 
-@app.route('/xhr/sickbeard/refresh_show/<tvdbid>/')
-def refresh_show(tvdbid):
-    params = '/?cmd=show.refresh&tvdbid=%s' % tvdbid
+@app.route('/xhr/sickbeard/refresh_show/<indexerid>/')
+def refresh_show(indexerid):
+    params = '/?cmd=show.refresh&indexerid=%s' % indexerid
     try:
         sickbeard = sickbeard_api(params)
     except:
@@ -382,9 +384,9 @@ def refresh_show(tvdbid):
     return sickbeard['message']
 
 
-@app.route('/xhr/sickbeard/update_show/<tvdbid>/')
-def update_show(tvdbid):
-    params = '/?cmd=show.update&tvdbid=%s' % tvdbid
+@app.route('/xhr/sickbeard/update_show/<indexerid>/')
+def update_show(indexerid):
+    params = '/?cmd=show.update&indexerid=%s' % indexerid
     try:
         sickbeard = sickbeard_api(params)
     except:
