@@ -13,14 +13,14 @@
       <p class="genre">{{ sickbeard.genre[0] }}</p>
       <p class="options">Options</p>
     </div>
-    <div class="manage" tvdbid="{{sickbeard.tvdb}}">
+    <div class="manage" indexerid="{{sickbeard.indexerid}}">
       <div class="delete"><img src="{{ url_for('static', filename='images/no.png' )}}">Delete Show</div>
       <div class="refresh"><img src="{{ url_for('static', filename='images/refresh.png' )}}">Refresh Show</div>
       <div class="update"><img src="{{ url_for('static', filename='images/update.png' )}}">Update Show</div>
     </div>
     <ul class="seasons">
       {% for season in sickbeard.season_list|sort %}
-      <li season="{{season}}" tvdbid="{{sickbeard.tvdb}}">Season {{ season }}</li>
+      <li season="{{season}}" indexerid="{{sickbeard.indexerid}}">Season {{ season }}</li>
       {% endfor %}
     </ul>
   </div>
