@@ -1,0 +1,72 @@
+{% extends "sickrage/base.html" %}
+
+{% block sickrage_menu %}
+<ul class="menu">
+  <li class="history" title="View History"><span>History</span></li>
+  <li class="all" title="View all"><span>All</span></li>
+  <li class="upcoming active" title="View upcoming"><span>Upcoming</span></li>
+</ul>
+{% endblock %}
+
+{% block sickrage_content %}
+
+{% macro item(i) -%}
+<div class="coming_ep" id="{{i.indexerid}}_{{i.season}}_{{i.episode}}" indexer={{i.indexerid}}>
+
+  <h2><a href="{{ url }}/home/displayShow?show={{i.indexerid}}" target="_blank">{{ i.show_name }} - {{ i.season }}x{{ i.episode }} - {{ i.ep_name }}</a></h2>
+
+  {% if not compact_view %}
+    <img width="100%" src="{{i.image}}" />
+  {% endif %}
+
+  <div class="options">
+    <img class="banner" src="{{ url_for('static', filename='images/banner_panel.png') }}" id="{{i.indexerid}}" title="{{i.show_name}} on Maraschino" />
+    <a href="http://www.thetvdb.com/?tab=series&id={{i.indexerid}}" target="_blank"><img class="indexer" src="{{ url_for('static', filename='images/tvdb.png') }}" title="{{i.show_name}} on TVDB"/></a>
+    <img class="search" src="{{ url_for('static', filename='images/search.png') }}" id="{{i.indexerid}}" episode="{{i.episode}}" season="{{i.season}}" title="Search for episode"/>
+  </div>
+
+  <div class="details">
+
+  </div>
+
+</div>
+{%- endmacro %}
+
+<div id="sr_content" class="noscroll">
+  <div id="sr_future">
+    {% if missed|length %}
+    <div id="sr_missed" title="SR has missed {{ missed|length }} episodes">{{ missed|length }}</div>
+    <div class="missed">
+      {% for show in missed %}
+      {{item(show)}}
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if today|length %}
+    <div id="sr_today">
+      <h3>Today</h3>
+      {% for show in today %}
+      {{item(show)}}
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if soon|length %}
+    <div id="sr_soon">
+      <h3>Soon</h3>
+      {% for show in soon %}
+      {{item(show)}}
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if later|length %}
+    <div id="sr_later">
+      <h3>Later</h3>
+      {% for show in later %}
+      {{item(show)}}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
