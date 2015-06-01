@@ -1,0 +1,49 @@
+{% extends "sickrage/base.html" %}
+
+{% block sickrage_content %}
+
+<div id="sr_content" class="episode-info">
+
+  <div class="back" indexid="{{ id }}" season="{{ season }}">
+    <p class="back">&laquo;</p>
+  </div>
+
+  <div class="clearfix">
+    <h4{% if sickrage.status =='Downloaded' %} class="downloaded"{% endif %}>
+      Episode: <a href="http://www.thetvdb.com/?tab=series&id={{id}}" target="_blank">{{ sickrage.name }}</a>
+    </h4>
+
+    {% if not sickrage.status =='Downloaded' %}
+    <p class="status">
+      <select id="{{ id }}" episode="{{ ep }}" season="{{ season }}">
+        <option {% if (sickrage.status == 'Wanted') %}SELECTED{% endif %}>wanted</option>
+        <option {% if (sickrage.status == 'Skipped') %}SELECTED{% endif %}>skipped</option>
+        <option {% if (sickrage.status == 'Archived') %}SELECTED{% endif %}>archived</option>
+        <option {% if (sickrage.status == 'Ignored') %}SELECTED{% endif %}>ignored</option>
+      </select>
+      <img class="search" height="15px" src="{{ url_for('static', filename='images/search.png') }}" id="{{ id }}" episode="{{ ep }}" season="{{ season }}" title="Search for episode"/>
+    </p>
+    {% endif %}
+  </div>
+
+  {% if sickrage.description != '' %}
+  <p class="plot">{{ sickrage.description }}</p>
+  {% endif %}
+
+  <div class="details">
+    {% if sickrage.airdate != '' %}
+    <div class="airdate"><strong>Aired:</strong> {{ sickrage.airdate }}</div>
+    {% endif %}
+
+    {% if sickrage.location != '' %}
+    <div class="location"><strong>Path:</strong> {{ sickrage.location }}</div>
+    {% endif %}
+
+    {% if sickrage.quality   != '' %}
+    <div class="quality"><strong>Quality:</strong> {{ sickrage.quality }}</div>
+    {% endif %}
+  </div>
+
+</div>
+
+{% endblock %}
