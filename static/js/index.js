@@ -1134,24 +1134,15 @@ $(document).ready(function() {
     });
   });
 
-<<<<<<< HEAD
   /******  END SICKRAGE Functions  *******/
 
-=======
-  /******  END SICKBEARD Functions  *******/
-  
->>>>>>> master2
   /*** SICKRAGE ***/
   
   // Loading wheel on menu click
   $(document).on('click', '#sickrage .menu li', function() {
     $(this).children().css('background', 'url('+WEBROOT+'/static/images/loading.gif) no-repeat center').html('&nbsp;');
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master2
   // Search Episode Functionality on Magnifying Glass png
   $(document).on('click', '#sickrage .coming_ep div.options img.search', function(){
     $(this).attr('src', WEBROOT + '/static/images/xhrloading.gif');
@@ -1159,11 +1150,7 @@ $(document).ready(function() {
     var season = $(this).attr('season');
     var id = $(this).attr('id');
     $.get(WEBROOT + '/xhr/sickrage/search_ep/'+id+'/'+season+'/'+ep)
-<<<<<<< HEAD
     .success(function(data){ 
-=======
-    .success(function(data){
->>>>>>> master2
       if(data.result === 'success'){
         $('#sickrage #'+id+'_'+season+'_'+ep+' div.options img.search').attr('src', WEBROOT + '/static/images/yes.png');
       } else {
@@ -1174,21 +1161,12 @@ $(document).ready(function() {
       popup_message('Could not reach Sickrage.');
     });
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master2
   // Air time on hover
   $(document).on('hover', '#sickrage .coming_ep', function(){
     var id = ($(this).attr('id'));
   });
-<<<<<<< HEAD
   
-=======
-
-
->>>>>>> master2
   // Load show info from banner display
   $(document).on('click', '#sickrage .coming_ep .options img.banner', function(){
     var indexer = $(this).attr('id');
@@ -1196,64 +1174,40 @@ $(document).ready(function() {
       $('#sickrage').replaceWith(data);
     });
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master2
   // Plot display function
   $(document).on('mouseenter', '#sickrage .coming_ep .details .plot-title', function(){
     $(this).toggle();
     var id = $(this).closest('div.coming_ep').attr('id');
     $('#sickrage #'+id+' .details .plot').toggle();
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master2
   // Plot hide function
   $(document).on('mouseleave', '#sickrage .coming_ep', function(){
     var id = $(this).attr('id');
     $('#sickrage #'+id+' .details .plot-title').show();
     $('#sickrage #'+id+' .details .plot').hide();
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master2
   // Toggle missed episodes
   $(document).on('click', '#sickrage #sr_missed', function(){
     $('#sickrage .missed').toggle();
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master2
   // All Shows menu
   $(document).on('click', '#sickrage .menu .all', function(){
     $.get(WEBROOT + '/xhr/sickrage/get_all', function(data){
       $('#sickrage').replaceWith(data);
     });
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master2
   // Coming episodes Menu
   $(document).on('click', '#sickrage .menu .upcoming', function(){
     $.get(WEBROOT + '/xhr/sickrage', function(data){
       $('#sickrage').replaceWith(data);
     });
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master2
   // History menu
   $(document).on('click', '#sickrage .menu .history', function(){
     $.get(WEBROOT + '/xhr/sickrage/history/30', function(data){
@@ -1261,30 +1215,18 @@ $(document).ready(function() {
       $('#sickrage .menu').prepend('<li class="snatched" title="View snatched"><span>Snatched</span></li>');
     });
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master2
   $(document).on('click', '#sickrage .menu li.snatched', function(){
     $('#sickrage .history .Snatched').toggle();
     $(this).toggleClass('active');
     $(this).children().css('background', 'url('+WEBROOT+'/static/images/snatched.png) no-repeat center').html('Snatched');
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master2
   // Show Menu
   $(document).on( 'click', '#sickrage .menu-icon', function(){
     $('#sickrage .menu').fadeToggle(200);
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master2
   // Show info
   $(document).on('click', '#sickrage #sickrage-list ul', function(){
     var id = $(this).attr('id');
@@ -1292,75 +1234,32 @@ $(document).ready(function() {
       $('#sickrage').replaceWith(data);
     });
   });
-<<<<<<< HEAD
   
   // Episode list back button functionality
   $(document).on('click', '#sr_content > #sr_show .sr-back', function(){
-=======
-
-  // Episode list back button functionality
-  $(document).on('click', '#sr_content > #sr_show .sr-back', function(){
-    $.get(WEBROOT + '/xhr/sickrage/get_all', function(data){
-      $('#sickrage').replaceWith(data);
-    });
-  });
-
-  // Season info
-  $(document).on('click', '#sr_content > #sr_show ul.seasons li', function(){
->>>>>>> master2
     $.get(WEBROOT + '/xhr/sickrage/get_season/'+$(this).attr('indexerid')+'/'+$(this).attr('season'), function(data){
       $('#sickrage').replaceWith(data);
       $('#sickrage .episode-list .tablesorter').tablesorter({sortList: [[0,0]]});
     });
   });
-<<<<<<< HEAD
   
-=======
-
-  // Going into episode info
-  $(document).on('click', '#sickrage .episode-list #season tbody tr', function(){
-    $.get(WEBROOT + '/xhr/sickrage/get_ep_info/'+$(this).attr('link'), function(data){
-      $('#sickrage').replaceWith(data);
-    });
-  });
-
-  // Episode info back button functionality
-  $(document).on('click', '#sickrage .episode-info div.back', function(){
-    $.get(WEBROOT + '/xhr/sickrage/get_season/'+$(this).attr('indexerid')+'/'+$(this).attr('season'), function(data){
-      $('#sickrage').replaceWith(data);
-      $('#sickrage .episode-list .tablesorter').tablesorter({sortList: [[0,0]]});
-    });
-  });
-
->>>>>>> master2
   // Back Button Episode List
   $(document).on('click', '#sickrage .episode-list >.back', function(){
     $.get(WEBROOT + '/xhr/sickrage/get_show_info/'+$(this).attr('indexerid'), function(data){
       $('#sickrage').replaceWith(data);
     });
   });
-<<<<<<< HEAD
   
   // Show Banner manager display
   $(document).on('click', '#sickrage #sr_show .banner .options' , function(){
     if($(this).hasClass('open')){ // closing
-=======
-
-  // Show Banner manager display
-  $(document).on('click', '#sickrage #sr_show .banner .options' , function(){
-    if($(this).hasClass('open')){  // closing
->>>>>>> master2
       $('#sickrage #sr_show .banner').transition({ y: '0px' });
     } else { // opening
       $('#sickrage #sr_show .banner').transition({ y: '-40px' });
     }
     $(this).toggleClass('open');
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master2
   // Delete show function
   $(document).on('click', '#sickrage #sr_show .manage .delete' , function(){
     var id = $('#sickrage #sr_show .manage').attr('indexerid');
@@ -1369,17 +1268,10 @@ $(document).ready(function() {
       popup_message(data);
     })
     .error(function(){
-<<<<<<< HEAD
       popup_message('Could not reach Sickrage.');
     });
   });
   
-=======
-      popup_message('Could not reach Sickbeard.');
-    });
-  });
-
->>>>>>> master2
   // Refresh show function
   $(document).on('click', '#sickrage #sr_show .manage .refresh' , function(){
     var id = $('#sickrage #sr_show .manage').attr('indexerid');
@@ -1388,17 +1280,10 @@ $(document).ready(function() {
       popup_message(data);
     })
     .error(function(){
-<<<<<<< HEAD
       popup_message('Could not reach Sickrage.');
     });
   });
   
-=======
-      popup_message('Could not reach Sickbeard.');
-    });
-  });
-
->>>>>>> master2
   // Update show function
   $(document).on('click', '#sickrage #sr_show .manage .update' , function(){
     var id = $('#sickrage #sr_show .manage').attr('indexerid');
@@ -1407,17 +1292,10 @@ $(document).ready(function() {
       popup_message(data);
     })
     .error(function(){
-<<<<<<< HEAD
       popup_message('Could not reach Sickrage.');
     });
   });
   
-=======
-      popup_message('Could not reach Sickbeard.');
-    });
-  });
-
->>>>>>> master2
   // Shutoff function
   $(document).on('click', '#sickrage div.powerholder .power', function(){
     $.get(WEBROOT + '/xhr/sickrage/shutdown')
@@ -1425,17 +1303,10 @@ $(document).ready(function() {
       popup_message(data);
     })
     .error(function(){
-<<<<<<< HEAD
       popup_message('Could not reach Sickrage.');
     });
   });
   
-=======
-      popup_message('Could not reach Sickbeard.');
-    });
-  });
-
->>>>>>> master2
   // Restart Function
   $(document).on('click', '#sickrage div.powerholder .restart', function(){
     $.get(WEBROOT + '/xhr/sickrage/restart')
@@ -1443,33 +1314,21 @@ $(document).ready(function() {
       popup_message(data);
     })
     .error(function(){
-<<<<<<< HEAD
       popup_message('Could not reach Sickrage.');
     });
   });
   
-=======
-      popup_message('Could not reach Sickbeard.');
-    });
-  });
-
->>>>>>> master2
   // Log function
   $(document).on('click', '#sickrage div.powerholder .log', function(){
     $.get(WEBROOT + '/xhr/sickrage/log/error', function(data){
       $('#sickrage').replaceWith(data);
     });
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master2
   // Log info level change
   $(document).on('change', '#sickrage #sr_log .level', function(){
     var level = $('#sickrage #sr_log .level').attr('value');
     $.get(WEBROOT + '/xhr/sickrage/log/'+level, function(data){
-<<<<<<< HEAD
     $('#sickrage').replaceWith(data);
     });
   });
@@ -1504,42 +1363,6 @@ $(document).ready(function() {
      });
     }
    });
-=======
-      $('#sickrage').replaceWith(data);
-    });
-  });
-
-  // Load search template
-  $(document).on('click', '#sickrage div.powerholder .add', function(){
-    $.get(WEBROOT + '/xhr/sickrage/search/')
-    .success(function(data){
-      $('#sickrage').replaceWith(data);
-    })
-    .error(function(){
-      popup_message('Could not reach Maraschino.');
-    });
-  });
-
-  // Load search results
-  $(document).on('keypress', '#sickrage .powerholder input', function(e){
-    if(e.which == 13){
-      e.preventDefault();
-      add_loading_gif($('#sickrage .powerholder .loading'));
-      var name = $(this).val();
-      params = '';
-      if(name !== ''){
-        params = 'name='+name;
-      }
-      $.get(WEBROOT + '/xhr/sickrage/search/?'+params)
-      .success(function(data){
-        $('#sickrage').replaceWith(data);
-      })
-      .error(function(){
-        popup_message('Could not reach Maraschino.');
-      });
-    }
-  });
->>>>>>> master2
 
   // Add show function
   $(document).on('click', '#sickrage #sr_search #sr_result li', function(){
@@ -1551,18 +1374,10 @@ $(document).ready(function() {
     .success(function(data){
       popup_message(data);
     })
-<<<<<<< HEAD
     .error(function(){
        popup_message('Could not reach Maraschino.');
      });
    });
-=======
-    .error(function(data){
-      popup_message('Could not reach Maraschino.');
-    });
-  });
-
->>>>>>> master2
   // Magnifying Glass Episode INFO
   $(document).on('click', '#sickrage .episode-info .status .search', function(){
     $(this).attr('src', WEBROOT + '/static/images/xhrloading.gif');
@@ -1579,17 +1394,10 @@ $(document).ready(function() {
       }
     })
     .error(function(){
-<<<<<<< HEAD
       popup_message('There was a problem with Sickrage.');
     });
   });
   
-=======
-      popup_message('There was a problem with SickBeard.');
-    });
-  });
-
->>>>>>> master2
   // Episode set status info
   $(document).on('change', '#sickrage .episode-info .status select', function(){
     var ep = $(this).attr('episode');
@@ -1603,19 +1411,11 @@ $(document).ready(function() {
       }
     })
     .error(function(){
-<<<<<<< HEAD
       popup_message('There was a problem with Sickrage.');
     });
   });
   
   /****** END SICKRAGE Functions *******/
-=======
-      popup_message('There was a problem with SickBeard.');
-    });
-  });
-  
-  /******  END SICKRAGE Functions  *******/
->>>>>>> master2
 
   /*********** EXTRA SETTINGS *************/
 

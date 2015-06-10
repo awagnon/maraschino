@@ -398,7 +398,3 @@ def update_show(indexerid):
         raise Exception
 
     return sickrage['message']
-<<<<<<< HEAD
-=======
-
->>>>>>> master2

@@ -189,64 +189,6 @@ AVAILABLE_MODULES = [
         ]
     },
     {
-        'name': 'sickrage',
-        'label': 'Manager - Sickrage',
-        'description': 'Manage Sickrage from within Maraschino',
-        'static': True,
-        'poll': 0,
-        'delay': 0,
-        'settings': [
-            {
-                'key': 'sickrage_api',
-                'value': '',
-                'description': 'Sickrage API Key',
-            },
-            {
-                'key': 'sickrage_user',
-                'value': '',
-                'description': 'Sickrage Username',
-            },
-            {
-                'key': 'sickrage_password',
-                'value': '',
-                'description': 'Sickrage Password',
-            },
-            {
-                'key': 'sickrage_ip',
-                'value': '',
-                'description': 'Sickrage Hostname',
-            },
-            {
-                'key': 'sickrage_port',
-                'value': '',
-                'description': 'Sickrage Port',
-            },
-            {
-                'key': 'sickrage_webroot',
-                'value': '',
-                'description': 'Sickrage Webroot',
-            },
-            {
-                'key': 'sickrage_https',
-                'value': '0',
-                'description': 'Use HTTPS',
-                'type': 'bool',
-            },
-            {
-                'key': 'sickrage_compact',
-                'value': '0',
-                'description': 'Compact view',
-                'type': 'bool',
-            },
-            {
-                'key': 'sickrage_airdate',
-                'value': '0',
-                'description': 'Show air date',
-                'type': 'bool',
-            },
-        ]
-	},
-    {
         'name': 'library',
         'label': 'XBMC - Library',
         'description': 'Allows you to browse your XBMC library and select items to play in XBMC.',
