@@ -132,8 +132,8 @@ AVAILABLE_MODULES = [
     },
     {
         'name': 'sickbeard',
-        'label': 'Manager - SickRage',
-        'description': 'Manage SickRage from within Maraschino',
+        'label': 'Manager - Sickbeard',
+        'description': 'Manage Sickbeard from within Maraschino',
         'static': True,
         'poll': 0,
         'delay': 0,
@@ -141,32 +141,32 @@ AVAILABLE_MODULES = [
             {
                 'key': 'sickbeard_api',
                 'value': '',
-                'description': 'SickRage API Key',
+                'description': 'Sickbeard API Key',
             },
             {
                 'key': 'sickbeard_user',
                 'value': '',
-                'description': 'SickRage Username',
+                'description': 'Sickbeard Username',
             },
             {
                 'key': 'sickbeard_password',
                 'value': '',
-                'description': 'SickRage Password',
+                'description': 'Sickbeard Password',
             },
             {
                 'key': 'sickbeard_ip',
                 'value': '',
-                'description': 'SickRage Hostname',
+                'description': 'Sickbeard Hostname',
             },
             {
                 'key': 'sickbeard_port',
                 'value': '',
-                'description': 'SickRage Port',
+                'description': 'Sickbeard Port',
             },
             {
                 'key': 'sickbeard_webroot',
                 'value': '',
-                'description': 'SickRage Webroot',
+                'description': 'Sickbeard Webroot',
             },
             {
                 'key': 'sickbeard_https',
@@ -188,64 +188,6 @@ AVAILABLE_MODULES = [
             },
         ]
     },
-    {
-        'name': 'sickrage',
-        'label': 'Manager - Sickrage',
-        'description': 'Manage Sickrage from within Maraschino',
-        'static': True,
-        'poll': 0,
-        'delay': 0,
-        'settings': [
-            {
-                'key': 'sickrage_api',
-                'value': '',
-                'description': 'Sickrage API Key',
-            },
-            {
-                'key': 'sickrage_user',
-                'value': '',
-                'description': 'Sickrage Username',
-            },
-            {
-                'key': 'sickrage_password',
-                'value': '',
-                'description': 'Sickrage Password',
-            },
-            {
-                'key': 'sickrage_ip',
-                'value': '',
-                'description': 'Sickrage Hostname',
-            },
-            {
-                'key': 'sickrage_port',
-                'value': '',
-                'description': 'Sickrage Port',
-            },
-            {
-                'key': 'sickrage_webroot',
-                'value': '',
-                'description': 'Sickrage Webroot',
-            },
-            {
-                'key': 'sickrage_https',
-                'value': '0',
-                'description': 'Use HTTPS',
-                'type': 'bool',
-            },
-            {
-                'key': 'sickrage_compact',
-                'value': '0',
-                'description': 'Compact view',
-                'type': 'bool',
-            },
-            {
-                'key': 'sickrage_airdate',
-                'value': '0',
-                'description': 'Show air date',
-                'type': 'bool',
-            },
-        ]
-	},
     {
         'name': 'library',
         'label': 'XBMC - Library',
@@ -291,64 +233,6 @@ AVAILABLE_MODULES = [
                 'type': 'bool',
             },
         ]
-    },
-    {
-    	'name': 'sickrage',
-    	'label': 'Manager - Sickrage',
-    	'description': 'Manage Sickrage from within Maraschino',
-    	'static': True,
-    	'poll': 0,
-    	'delay': 0,
-    	'settings': [
-    		{
-    			'key': 'sickrage_api',
-    			'value': '',
-    			'description': 'Sickrage API Key',
-    		},
-    		{
-    			'key': 'sickrage_user',
-    			'value': '',
-    			'description': 'Sickrage Username',
-    		},
-    		{
-    			'key': 'sickrage_password',
-    			'value': '',
-    			'description': 'Sickrage Passwpord',
-    		},
-    		{
-    			'key': 'sickrage_ip',
-    			'value': '',
-    			'description': 'Sickrage Hostname',
-    		},
-    		{
-    			'key': 'sickrage_port',
-    			'value': '',
-    			'description': 'Sickrage Port',
-    		},
-    		{
-    			'key': 'sickrage_webroot',
-    			'value': '',
-    			'description': 'Sickrage Webroot',
-    		},
-    		{
-    			'key': 'sickrage_https',
-    			'value': '0',
-    			'description': 'Use HTTPS',
-    			'type': 'bool',
-    		},
-    		{
-    			'key': 'sickrage_compact',
-    			'value': '0',
-    			'description': 'Compact View',
-    			'type': 'bool',
-    		},
-    		{
-    			'key': 'sickrage_airdate',
-    			'value': '0',
-    			'description': 'Show air date',
-    			'type': 'bool',
-    		},
-    	]
     },
     {
         'name': 'recently_added_albums',
@@ -882,11 +766,6 @@ MISC_SETTINGS = [
         'value': 'EEE',
         'description': 'Module title color (hexadecimal)',
     },
-	{
-		'key': 'page_title_text',
-		'value': 'Maraschino',
-		'description': 'Web page title (name of the browser tab)',
-	},
 ]
 
 SERVER_SETTINGS = [

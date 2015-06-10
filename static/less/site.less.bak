@@ -11,11 +11,6 @@
 @import "module-script_launcher.less";
 @import "module-search.less";
 @import "module-sickbeard.less";
-<<<<<<< HEAD
-@import "module-sickrage.less"
-=======
-@import "module-sickrage.less";
->>>>>>> master2
 @import "module-synopsis.less";
 @import "module-trakt.less";
 @import "module-traktplus.less";
