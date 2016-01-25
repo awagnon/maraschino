@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="service.web.maraschino"
+       name="maraschino"
+       version="4.1.0"
+       provider-name="unofficial.addon.pro">
+  <requires>
+    <import addon="os.openelec.tv" version="4.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
+
+  </requires>
+  <extension point="xbmc.service"
+             library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Maraschino: Web interface to act as a nice overview/front page for my XBMC HTPC</summary>
+    <description>
+Maraschino is an XBMC web interface with customisable applications module providing quick access to your web interfaces (e.g. SABnzb+, SickBeard, or whatever else you want to link to), recently added episodes module, media library browser, currently playing bar and disk space module.
+    </description>
+    <disclaimer>
+
+    </disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
