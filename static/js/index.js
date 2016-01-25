@@ -1417,7 +1417,10 @@ $(document).ready(function() {
   
   /****** END SICKRAGE Functions *******/
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 9d2814b... Merge Sickrage from loriezn
   /*********** EXTRA SETTINGS *************/
 
   $(document).on('click', '#extra_settings', function() {
