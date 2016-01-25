@@ -23,7 +23,7 @@ import xbmc, time, os, subprocess, xbmcaddon
 __scriptname__ = "maraschino service"
 __author__ = "OpenELEC"
 __url__ = "http://www.openelec.tv"
-__settings__   = xbmcaddon.Addon(id='service.web.maraschino')
+__settings__   = xbmcaddon.Addon(id='services.web.maraschino')
 __cwd__        = __settings__.getAddonInfo('path')
 __start__      = xbmc.translatePath( os.path.join( __cwd__, 'bin', "maraschino.start") )
 __stop__       = xbmc.translatePath( os.path.join( __cwd__, 'bin', "maraschino.stop") )
