@@ -1,0 +1,39 @@
+{% extends "sickrage/base.html" %}
+
+{% block sickrage_content %}
+
+<div id="sr_content" class="episode-list noscroll">
+  <div class="back" indexerid="{{ id }}" season="{{ season }}">
+    <p class="back">&laquo;</p>
+  </div>
+  <table id="season" class="tablesorter">
+    <thead>
+      <th class="ep">#</th>
+      <th class="name">Name</th>
+      <th class="status">Status</th>
+      <th class="quality">Quality</th>
+      <th class="airdate">Air Date</th>
+    </thead>
+    <tbody>
+      {% for episode in sickrage|sort %}
+      <tr link="{{ id }}/{{ season }}/{{ episode }}">
+        <td>{{episode}}</td>
+        <td>{{sickrage[episode].name}}</td>
+        <td>
+          <img src="
+                {% if sickrage[episode].status == "Downloaded" %}
+                  {{url_for('static', filename='images/yes.png')}}
+                {% else %}
+                  {{url_for('static', filename='images/no.png')}}
+                {% endif %}
+            " />
+        </td>
+        <td>{{sickrage[episode].quality}}</td>
+        <td>{{sickrage[episode].airdate}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
