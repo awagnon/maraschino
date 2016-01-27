@@ -17,9 +17,6 @@
 
   {% if not compact_view %}
     <img width="100%" src="{{i.image}}" />
-		{% if sickrage.description != '' %}
-		<p class="plot">{{ sickrage.description }}</p>
- 		 {% endif %}
   {% endif %}
 
   <div class="options">
@@ -29,7 +26,7 @@
   </div>
 
   <div class="details">
-
+    <div class="airs">{{i.airs}}{% if show_airdate %} ({{i.airdate}}){% endif %}</div>
   </div>
 
 </div>
