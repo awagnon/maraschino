@@ -17,6 +17,9 @@
 
   {% if not compact_view %}
     <img width="100%" src="{{i.image}}" />
+		{% if sickrage.description != '' %}
+		<p class="plot">{{ sickrage.description }}</p>
+ 		 {% endif %}
   {% endif %}
 
   <div class="options">
